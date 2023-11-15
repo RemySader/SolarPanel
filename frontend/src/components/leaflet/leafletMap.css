@@ -1,0 +1,11 @@
+.card {
+    border: 3px solid #87CEFA;
+    border-radius: 20px;
+    padding: 10px;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+    margin-left: 60%; /* Push the card to the right */
+}

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 80vh;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     align-items: center;
   
@@ -10,7 +10,7 @@
     background-repeat:no-repeat;
     background-position:center;
     background-size: cover;
-    position: fixed;
+    /* position: fixed; */
   }
   
   span {
