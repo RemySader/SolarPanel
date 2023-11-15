@@ -30,7 +30,7 @@ const leafletMap = () => {
             <div className='card'>
                 <MapContainer center={position} zoom={8} style={{ width: '100%', height: '400px' }}>
                     <TileLayer
-                        url="https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
+                        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"
                         />
                 </MapContainer>
             </div>
