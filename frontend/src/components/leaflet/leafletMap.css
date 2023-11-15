@@ -12,3 +12,24 @@
     margin: 5%;
     grid-template-columns: 2fr 1fr;
 }
+.paragraphe-1 {
+    margin: 5% 0;
+}
+
+.ads{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 60%;
+    margin-top: 5%;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.number {
+    font-size: 70px;
+}
+.desc {
+    display: flex;
+    align-items: center;
+}

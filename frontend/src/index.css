@@ -44,9 +44,12 @@ h2 {
   transition: font-size 0.3s ease;
 }
 h3 {
-  font-size: 2.1em;
-  line-height: 1.1;
+  font-size: 2.2em;
+  line-height: 1.4;
   transition: font-size 0.3s ease;
+}
+p {
+  font-size: 1.1em;
 }
 /*!============================================*/
 
