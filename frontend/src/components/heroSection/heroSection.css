@@ -5,18 +5,21 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-  
+
     background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),url(/src/images/heroSection.jpg);
     background-repeat:no-repeat;
     background-position:center;
     background-size: cover;
-    /* position: fixed; */
+    background-attachment: fixed;
   }
-  
-  span {
+
+.span-1 {
     color: #FFC857;
   }
-  
+.title {
+  color: white;
+}
+
   .seperator {
     width: 500px;
     background-color: white;
@@ -24,7 +27,7 @@
     margin: 8px 0;
     transition: width 0.3s ease;
   }
-  
+
   @media (max-width:750px) {
   .seperator {
     width: 400px;

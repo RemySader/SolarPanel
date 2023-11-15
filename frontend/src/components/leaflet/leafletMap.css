@@ -2,10 +2,13 @@
     border: 3px solid #FFC857;
     border-radius: 20px;
     padding: 10px;
-    width: 25%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.lebanonMap {
+    display: grid;
     margin: 5%;
-    margin-left: 60%; /* Push the card to the right */
+    grid-template-columns: 2fr 1fr;
 }
