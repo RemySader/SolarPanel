@@ -3,6 +3,7 @@
     border-radius: 20px;
     padding: 10px;
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,25 +12,69 @@
     display: grid;
     margin: 5%;
     grid-template-columns: 2fr 1fr;
+    gap: 10px;
 }
 .paragraphe-1 {
     margin: 5% 0;
 }
 
 .ads{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    width: 60%;
-    margin-top: 5%;
+    display: flex;
+    width: 40vw;
+    margin: 5% 0;
     border: 1px solid #000000;
     border-radius: 20px;
     padding: 2%;
-}
+    gap: 15px;
+    align-items: center;
 
+}
 .number {
     font-size: 70px;
 }
-.desc {
-    display: flex;
-    align-items: center;
+
+
+
+
+@media (max-width:975px) {
+    .lebanonMap{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .grid-1{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    .number {
+        font-size: 50px;
+    }
+    .sign-up{
+        display: flex;
+        align-items: center;
+    }
+    .ads{
+        width: 60vw;
+    }
+}
+
+@media (max-width:600px) {
+    .lebanonMap{
+        grid-template-columns: 1fr;
+    }
+    .grid-1{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .number {
+        font-size: 50px;
+    }
+    .sign-up{
+        display: flex;
+        align-items: center;
+    }
+    .ads{
+        width: 90vw;
+    }
 }

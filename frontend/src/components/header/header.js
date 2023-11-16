@@ -165,7 +165,7 @@ function Header() {
           fullWidth
           PaperProps={{
             style: {
-              height: '65vh',
+              height: '67vh',
               width: '40vw',
               // minHeight: '30%',
               borderRadius: 16,
