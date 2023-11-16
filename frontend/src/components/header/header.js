@@ -10,6 +10,13 @@ import MenuItem from '@mui/material/MenuItem';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Avatar from '@mui/material/Avatar';
 import { Typography, useMediaQuery, useTheme } from "@mui/material";
+import { useState } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Signup from '../form/signup';
+import Signin from '../form/signin';
 
 import DrawerComp from "./drawer";
 
@@ -30,6 +37,19 @@ function Header() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [dialogType, setDialogType] = useState(null);
+
+  const openDialog = (type) => {
+    setIsDialogOpen(true);
+    setDialogType(type);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+    setDialogType(null);
   };
 
   return (
@@ -117,12 +137,14 @@ function Header() {
             ) : (
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                     <Button
+                        onClick={() => openDialog('signin')} // Open the Signin dialog
                         sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
                     >
                         Login
                     </Button>
                     <Button
-                    sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
+                        onClick={() => openDialog('signup')} // Open the Signup dialog
+                        sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
                     >
                     Signup
                     </Button>
@@ -134,6 +156,27 @@ function Header() {
             </Toolbar>
         </Container>
         </AppBar>
+        {isDialogOpen && (
+        <Dialog
+          open={isDialogOpen}
+          onClose={closeDialog}
+          maxWidth="md"
+          fullWidth
+          PaperProps={{
+            style: {
+              maxHeight: '60vh',
+              width: '40vw',
+              minHeight: '30%',
+              borderRadius: 16,
+            },
+          }}
+        >
+          <DialogContent>
+            {dialogType === 'signin' && <Signin onClose={closeDialog} />}
+            {dialogType === 'signup' && <Signup onClose={closeDialog} />}
+          </DialogContent>
+        </Dialog>
+      )}
     </React.Fragment>
   );
 }
