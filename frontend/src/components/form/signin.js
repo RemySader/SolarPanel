@@ -4,13 +4,13 @@ import { Box, Stack } from '@mui/material';
 // import { useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-function Login() {
+function Login({ onClose, openDialog }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginMessage, setLoginMessage] = useState('');
     // const navigate = useNavigate();
 
-    const paperStyle = { padding: 20, width: 280 };
+    const paperStyle = { padding: 100, width: 280 };
     const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
     const linkstyle = { color: '#FFC857', textDecorationColor: '#FFC857' }
 
@@ -61,6 +61,7 @@ function Login() {
                         }}
                     />
                     {/* <Button type='submit' color='primary' variant="contained" style={btnstyle} >Sign In</Button> */}
+                    {/* onclick handleLogin function (axios) */}
                     <Button variant="contained" style={btnstyle}>Sign In</Button>
                 </Stack>
                 <Stack spacing={2}>
@@ -75,7 +76,13 @@ function Login() {
                     </Typography>
                     <Typography style={{ textAlign: 'center' }}> Don't have an account?&nbsp;
                         {/* <Link href="/signup" > */}
-                        <Link style={ linkstyle }>
+                        <Link 
+                        style={ linkstyle }
+                        onClick={() => {
+                            onClose(); // Close the Sign In dialog
+                            openDialog('signup'); // Open the Sign Up dialog
+                          }}
+                        >
                             Sign Up
                         </Link>
                     </Typography>

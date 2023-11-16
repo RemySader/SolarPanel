@@ -17,6 +17,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Signup from '../form/signup';
 import Signin from '../form/signin';
+import CloseIcon from '@mui/icons-material/Close';
 
 import DrawerComp from "./drawer";
 
@@ -159,21 +160,33 @@ function Header() {
         {isDialogOpen && (
         <Dialog
           open={isDialogOpen}
-          onClose={closeDialog}
+          // onClose={closeDialog}
           maxWidth="md"
           fullWidth
           PaperProps={{
             style: {
-              maxHeight: '60vh',
+              height: '65vh',
               width: '40vw',
-              minHeight: '30%',
+              // minHeight: '30%',
               borderRadius: 16,
             },
           }}
+          static
+          // onClose={() => null}
         >
+          <DialogTitle>
+            <IconButton
+              edge="end"
+              color="inherit"
+              onClick={closeDialog}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
           <DialogContent>
-            {dialogType === 'signin' && <Signin onClose={closeDialog} />}
-            {dialogType === 'signup' && <Signup onClose={closeDialog} />}
+            {dialogType === 'signin' && <Signin onClose={closeDialog} openDialog={openDialog} />}
+            {dialogType === 'signup' && <Signup onClose={closeDialog} openDialog={openDialog} />}
           </DialogContent>
         </Dialog>
       )}

@@ -20,7 +20,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-function SignUp() {
+function SignUp({ onClose, openDialog }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -34,6 +34,9 @@ function SignUp() {
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [roleErrorMessage, setRoleErrorMessage] = useState('');
+
+  const [selectedRole, setSelectedRole] = useState(null);
   const [date, setDate] = React.useState(dayjs().startOf('day'));
   const [location, setLocation] = React.useState('');
 
@@ -72,7 +75,7 @@ function SignUp() {
       setLastNameError('');
     }
 
-    const emailRegex = /^\S+@\S+\.\S+$/;
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!emailRegex.test(email)) {
       setEmailError('Invalid email format.');
       isValid = false;
@@ -80,9 +83,9 @@ function SignUp() {
       setEmailError('');
     }
 
-    const phoneRegex = /^\d{8}$/;
+    const phoneRegex = /^(03|70|71|76|80|81)\d{6}$/;
     if (!phoneRegex.test(phoneNumber)) {
-      setPhoneNumberError('Invalid phone number. Phone number should be 8 digits.');
+      setPhoneNumberError('Invalid lebanese phone number.');
       isValid = false;
     } else {
       setPhoneNumberError('');
@@ -103,6 +106,13 @@ function SignUp() {
       setPasswordError('');
     }
 
+    if (!selectedRole) {
+      setRoleErrorMessage('Please select a role.');
+      isValid = false;
+    } else {
+      setRoleErrorMessage('');
+    }
+
     return isValid;
   };
 
@@ -116,6 +126,13 @@ function SignUp() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      console.log("hi");
+    }
+  }; 
+
   return (
     <Box
       display="flex"
@@ -124,13 +141,14 @@ function SignUp() {
       minHeight="45vh"
     >
       <Paper elevation={0} style={paperStyle}>
-        <form>
+        {/* hon bhot bi aleb form onSubmit={handleSubmit} */}
+        <form onSubmit={handleSubmit}>
           <Grid container alignItems='center' justifyContent='center'>
             <h3 style={{ marginBottom: '20px' }}>Sign Up</h3>
           </Grid>
           <Stack spacing={2} direction={'column'}>
             <Stack spacing={4} direction={'row'}>
-              <TextField label='First Name' variant="outlined" placeholder='Enter First Name' fullWidth required
+              <TextField label='First Name' variant="outlined" placeholder='Enter First Name' fullWidth required 
                 value={firstName} onChange={(e) => setFirstName(e.target.value)} error={!!firstNameError} helperText={firstNameError}
               />
               <TextField label='Last Name' variant="outlined" placeholder='Enter Last Name' fullWidth required
@@ -171,6 +189,7 @@ function SignUp() {
                       label="Location"
                       variant="outlined"
                       sx={{ width: '100%' }} //50%
+                      required
                     />
                   )}
               />
@@ -191,7 +210,7 @@ function SignUp() {
             </Stack>
             <Stack spacing={4} direction={'row'}>
               <TextField label='Username' variant="outlined" placeholder='Enter Username' fullWidth required
-                value={username} onChange={(e) => setUsername(e.target.value)} error={!!usernameError} helperText={usernameError}
+                value={username} onChange={(e) => {setUsername(e.target.value)}} error={!!usernameError} helperText={usernameError}
               />
               <TextField 
                 label='Password' 
@@ -215,30 +234,44 @@ function SignUp() {
                 }}
               />
             </Stack>
-            <FormControl sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <FormControl sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} required>
               <FormLabel id="demo-row-radio-buttons-group-label">Role</FormLabel>
               <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
+                value={selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value)}
               >
                 <FormControlLabel value="Buyer" control={<Radio />} label="Buyer" />
                 <FormControlLabel value="Seller" control={<Radio />} label="Seller" />
               </RadioGroup>
             </FormControl>
-            {errorMessage && (
+            {roleErrorMessage && !errorMessage &&(
+            <Typography style={{ color: 'red', textAlign: 'center' }}>
+              {roleErrorMessage}
+            </Typography>
+          )}
+            {errorMessage && !roleErrorMessage && (
               <Typography style={{ color: 'red', textAlign: 'center' }}>
                 {errorMessage}
               </Typography>
             )}
             {/* <Button type='submit' color='primary' variant="contained" style={btnstyle} onClick={handleClearErrorMessage}>Sign Up</Button> */}
-            <Button variant="contained" style={btnstyle}>Sign Up</Button>
+            <Button type='submit' variant="contained" style={btnstyle} onclick={handleClearErrorMessage}>Sign Up</Button>
           </Stack>
         </form>
         <Stack spacing={2}>
           <Typography style={{ textAlign: 'center' }}>
             Have an account?&nbsp;
-            <Link href="/" style={linkstyle}>
+            {/* LINK???? */}
+            <Link
+            style={linkstyle}
+            onClick={() => {
+              onClose(); // Close the Sign Up dialog
+              openDialog('signin'); // Open the Sign In dialog
+            }}
+            >
               Login
             </Link>
           </Typography>
