@@ -18,6 +18,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Signup from '../form/signup';
 import Signin from '../form/signin';
 import CloseIcon from '@mui/icons-material/Close';
+import axios from 'axios';
 
 import DrawerComp from "./drawer";
 
@@ -26,8 +27,8 @@ const pages = ['Home', 'About Us', 'Solar Panels', 'Sell', 'Your Plantations'];
 function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isLoggedIn, setisLoggedIn] = React.useState(false);
-  const [isAdmin, setisAdmin] = React.useState(true);
-  const [isSeller, setisSeller] = React.useState(true);
+  const [isAdmin, setisAdmin] = React.useState(false);
+  const [isSeller, setisSeller] = React.useState(false);
 
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("1071"));
@@ -53,9 +54,49 @@ function Header() {
     setDialogType(null);
   };
 
+  React.useEffect(() => {
+    const checkTokenValidity = async () => {
+      // Check if a valid token exists in localStorage
+      const token = localStorage.getItem('token');
+  
+      if (token) {
+        try {
+          // Send the token to the server for verification
+          const response = await axios.post('http://localhost:3000/user/check-token', null, {
+            headers: {
+            Authorization: `bearer ${token}`,
+            }
+          });
+  
+          if (response.data.valid) {
+            // The token is valid
+            setisLoggedIn(true);
+            console.log("hi")
+
+            const roles = response.data.data.roles;
+            setisAdmin(roles.includes('admin'));
+            setisSeller(roles.includes('seller'));
+
+          } else {
+            // The token is not valid; handle accordingly
+            console.error('Invalid token');
+            setisLoggedIn(false); // Update isLoggedIn state
+            setisAdmin(false); // Update isAdmin state
+            setisSeller(false);
+            // You may want to redirect the user to the login page or handle it in another way
+          }
+        } catch (error) {
+          console.error('Error checking token validity:', error.response?.data);
+        }
+      }
+    };
+  
+    checkTokenValidity();
+  }, []);
+
   return (
     <React.Fragment>
-        <AppBar position="fixed" sx={{ backgroundColor: 'transparent' , boxShadow: 'none' }}>
+        <AppBar position="fixed" sx={{ backgroundColor: '#181818' , boxShadow: 'none' }}>
         <Container maxWidth="xl">
             <Toolbar disableGutters>
             <IconButton sx={{ p: 0 }}>
@@ -84,7 +125,7 @@ function Header() {
                     >
                         Solar Panels
                     </Button>
-                    {isSeller && (
+                    {/* {isSeller && isLoggedIn && (
                     <>
                         <Button
                             sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
@@ -97,7 +138,7 @@ function Header() {
                             Your Plantations
                         </Button>
                     </>
-                    )}
+                    )} */}
             </Box>
 
             
@@ -130,6 +171,8 @@ function Header() {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
+                    {isSeller && <MenuItem onClick={handleClose}>Your Plantations</MenuItem>}
+                    {isSeller && <MenuItem onClick={handleClose}>Sell</MenuItem>}
                     <MenuItem onClick={handleClose}>Personal Information</MenuItem>
                     <MenuItem onClick={handleClose}>Change Password</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
@@ -147,7 +190,7 @@ function Header() {
                         onClick={() => openDialog('signup')} // Open the Signup dialog
                         sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
                     >
-                    Signup
+                        Signup
                     </Button>
                 </Box>
             )}

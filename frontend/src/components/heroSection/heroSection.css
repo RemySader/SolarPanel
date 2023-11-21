@@ -1,37 +1,38 @@
 .heroSection {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 
-    background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),url(/src/images/heroSection.jpg);
-    background-repeat:no-repeat;
-    background-position:bottom;
-    background-size: cover;
-    background-attachment: fixed;
-  }
-
-.span-1 {
-    color: #FFC857;
-  }
-.title {
-  color: white;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),url(/src/images/heroSection.jpg);
+  background-repeat:no-repeat;
+  background-position:bottom;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-  .seperator {
-    width: 600px;
-    background-color: white;
-    height: 4px;
-    margin: 8px 0;
-    transition: width 0.3s ease;
-  }
+.slogant{
+color: #fafafa;
+}
+.title {
+color: #FFC857;
+}
 
-  @media (max-width:500px) {
-    .heroSection{
-      height: 60vh;
-      background-position:bottom;
-      background-attachment:scroll;
-    }
+.separator{
+  width: 50%;
+  background-color: #FFFF;
+  height: 4px;
+  margin: 8px 0;
+  transition: width 0.3s ease;
+}
+
+
+@media (max-width:500px) {
+  .heroSection{
+    height: 60vh;
+    background-position:bottom;
+    background-attachment:scroll;
   }
+}

@@ -19,6 +19,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import axios from 'axios';
 
 function SignUp({ onClose, openDialog }) {
   const [firstName, setFirstName] = useState('');
@@ -129,7 +130,38 @@ function SignUp({ onClose, openDialog }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      console.log("hi");
+      axios
+        .post('http://localhost:3000/auth/signup', {
+          firstName: firstName,
+          lastName: lastName,
+          username: username,
+          phoneNumber: phoneNumber,
+          email: email,
+          password: password,
+          dateOfBirth: date,
+          location: location,
+          roleChoice: selectedRole,
+        })
+        .then((response) => {
+          console.log('Response:', response.data);
+          if (response.data.status === 'SUCCESS') {
+            alert('Account created successfully!');
+
+            onClose();
+            openDialog('signin');
+          } else if (response.data.status === 'FAILED') {
+            console.error('Signup failed:', response.data.message);
+            setErrorMessage(response.data.message);
+          } else {
+            console.error('Signup failed: Unexpected response format');
+            setErrorMessage('Unexpected response format.');
+          }
+        })
+        .catch((error) => {
+          console.error('Signup failed:', error.response?.data);
+    
+          setErrorMessage(error.response?.data.message);
+        });
     }
   }; 
 
@@ -141,7 +173,6 @@ function SignUp({ onClose, openDialog }) {
       minHeight="45vh"
     >
       <Paper elevation={0} style={paperStyle}>
-        {/* hon bhot bi aleb form onSubmit={handleSubmit} */}
         <form onSubmit={handleSubmit}>
           <Grid container alignItems='center' justifyContent='center'>
             <h3 style={{ marginBottom: '20px' }}>Sign Up</h3>
@@ -244,7 +275,7 @@ function SignUp({ onClose, openDialog }) {
                 onChange={(e) => setSelectedRole(e.target.value)}
               >
                 <FormControlLabel value="Buyer" control={<Radio />} label="Buyer" />
-                <FormControlLabel value="Seller" control={<Radio />} label="Seller" />
+                <FormControlLabel value="buyAndSell" control={<Radio />} label="Seller" />
               </RadioGroup>
             </FormControl>
             {roleErrorMessage && !errorMessage &&(

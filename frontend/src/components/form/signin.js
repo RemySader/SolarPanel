@@ -3,6 +3,9 @@ import { Grid, Paper, TextField, Button, Typography, Link, InputAdornment, IconB
 import { Box, Stack } from '@mui/material';
 // import { useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
+import Header from '../header/header';
 
 function Login({ onClose, openDialog }) {
     const [username, setUsername] = useState('');
@@ -19,6 +22,43 @@ function Login({ onClose, openDialog }) {
     const handleTogglePasswordVisibility = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
+
+    const handleLogin = () => {
+        setLoginMessage('');
+        axios.post('http://localhost:3000/auth/login', { email: username, password })
+          .then((response) => {
+            if (response.data.status === 'SUCCESS') {
+              const token = response.data.accessToken;
+              console.log('Login successful. Token:', token);
+      
+              // Store the token in your preferred way (e.g., localStorage, Redux store, etc.)
+              localStorage.setItem("token", token);
+      
+              alert('Login successful!');
+              const userData = response.data.data[0];
+              const userId = userData._id;
+              localStorage.setItem("userId", userId);
+      
+              const rolesFromResponse = userData.roles;
+              localStorage.setItem("roles", JSON.stringify(rolesFromResponse));
+              
+              onClose();
+
+            //   navigate(`/`);
+            } else if (response.data.status === 'FAILED') {
+              console.error('Login failed:', response.data.message);
+              setLoginMessage(response.data.message);
+            } else {
+              console.error('Login failed: Unexpected response format');
+              setLoginMessage('Unexpected response format.');
+            }
+          })
+          .catch((error) => {
+            console.error('Login failed:', error.response?.data);
+      
+            setLoginMessage('Invalid username or password.');
+          });
+      };
 
     return (
         <Box
@@ -62,7 +102,7 @@ function Login({ onClose, openDialog }) {
                     />
                     {/* <Button type='submit' color='primary' variant="contained" style={btnstyle} >Sign In</Button> */}
                     {/* onclick handleLogin function (axios) */}
-                    <Button variant="contained" style={btnstyle}>Sign In</Button>
+                    <Button variant="contained" style={btnstyle} onClick={handleLogin}>Sign In</Button>
                 </Stack>
                 <Stack spacing={2}>
                     {loginMessage && (
