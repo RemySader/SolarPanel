@@ -19,6 +19,10 @@ import Signup from '../form/signup';
 import Signin from '../form/signin';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
+import TextField from '@mui/material/TextField';
+import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
+import { InputAdornment } from '@mui/material';
 
 import DrawerComp from "./drawer";
 
@@ -31,7 +35,16 @@ function Header() {
   const [isSeller, setisSeller] = React.useState(false);
 
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down("1071"));
+  const isMatch = useMediaQuery(theme.breakpoints.down("1150")); //1071 1186
+
+  const isMatchSearch = useMediaQuery(theme.breakpoints.down("1295"));
+  const isMatchSearch1 = useMediaQuery(theme.breakpoints.down("1190"));
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleClear = () => {
+    setSearchQuery('');
+  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -104,6 +117,94 @@ function Header() {
             </IconButton>
             {isMatch ? (
             <>
+            {/* <Box sx={{ display: 'flex', alignItems: 'center', marginX: 'auto', width: isMatchSearch ? '80%' : '80%',}}> */}
+            <Box sx={{ display: 'flex', alignItems: 'center', marginX: 'auto', width: '80%'}}>
+            <TextField
+                  // label="Search"
+                  label={searchQuery ? '' : 'Search'}
+                  variant="outlined"
+                  size="small"
+                  color="primary"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  InputLabelProps={{ shrink: false }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {searchQuery && (
+                          <IconButton size="small" onClick={handleClear} edge="end">
+                            <ClearIcon />
+                          </IconButton>
+                        )}
+                        <IconButton
+                          size="small"
+                          onClick={() => {
+                            // Handle search button click
+                          }}
+                          edge="end"
+                        >
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    marginRight: 'auto',
+                    marginLeft: 'auto',
+                    width: '80%',
+                    '& .MuiInputLabel-root': {
+                      color: 'black !important', // Adjust the label color here
+                    },
+                    '& .MuiInputLabel-outlined': {
+                      color: 'black', // Adjust the placeholder color here
+                    },
+                    '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+                      color: 'none', // Adjust the color when the label shrinks (input has value)
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: 5,
+                      backgroundColor: 'white', // Adjust the background color here
+                      '& fieldset': {
+                        borderColor: 'black', // Adjust the border color here
+                      },
+                      '& input': {
+                        color: 'black', // Adjust the text color here
+                      },
+                      // '&:hover fieldset': {
+                      //   borderColor: '#FFC857', // Adjust the hover border color here
+                      // },
+                      // '&.Mui-focused fieldset': {
+                      //   borderColor: '#FFC857', // Adjust the focused border color here
+                      // },
+                      // '&.Mui-focused .MuiInputLabel-root': {
+                      //   color: '#FFC857', // Adjust the focused label color here
+                      // },
+                      '&.Mui-focused': {
+                        '& fieldset': {
+                          borderColor: 'black', // Adjust the focused border color here
+                        },
+                        '& input': {
+                          color: 'black', // Adjust the focused text color here
+                        },
+                        // '& .MuiInputLabel-root': {
+                        //   color: 'black', // Adjust the focused label color here
+                        // },
+                      },
+                    },
+                  }}
+                  onFocus={(e) => e.preventDefault()} // Prevent focus on click
+                />
+
+                {/* <IconButton
+                  size="small"
+                  sx={{ color: 'white', marginLeft: 1 }}
+                  onClick={() => {
+                    // Handle search button click
+                  }}
+                >
+                  <SearchIcon />
+                </IconButton> */}
+              </Box>
               <DrawerComp />
             </>
           ) : (
@@ -139,6 +240,106 @@ function Header() {
                         </Button>
                     </>
                     )} */}
+                    
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <TextField
+                  // label="Search"
+                  label={searchQuery ? '' : 'Search'}
+                  variant="outlined"
+                  size="small"
+                  color="primary"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  InputLabelProps={{ shrink: false }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {searchQuery && (
+                          <IconButton size="small" onClick={handleClear} edge="end">
+                            <ClearIcon />
+                          </IconButton>
+                        )}
+                        <IconButton
+                          size="small"
+                          onClick={() => {
+                            // Handle search button click
+                          }}
+                          edge="end"
+                        >
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    // width: 500,
+                    // width: isMatchSearch ? 400 : 500,
+                    // width: isMatchSearch ? 400 : (isMatchSearch1 ? 300 : 500),
+                    width: isMatchSearch ? 400 : (isMatchSearch1 ? 250 : 550),
+                    
+                    '& .MuiInputLabel-root': {
+                      color: 'black !important', // Adjust the label color here
+                    },
+                    '& .MuiInputLabel-outlined': {
+                      color: 'black', // Adjust the placeholder color here
+                    },
+                    '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+                      color: 'none', // Adjust the color when the label shrinks (input has value)
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: 5,
+                      backgroundColor: 'white', // Adjust the background color here
+                      '& fieldset': {
+                        borderColor: 'black', // Adjust the border color here
+                      },
+                      '& input': {
+                        color: 'black', // Adjust the text color here
+                      },
+                      // '&:hover fieldset': {
+                      //   borderColor: '#FFC857', // Adjust the hover border color here
+                      // },
+                      // '&.Mui-focused fieldset': {
+                      //   borderColor: '#FFC857', // Adjust the focused border color here
+                      // },
+                      // '&.Mui-focused .MuiInputLabel-root': {
+                      //   color: '#FFC857', // Adjust the focused label color here
+                      // },
+                      '&.Mui-focused': {
+                        '& fieldset': {
+                          borderColor: 'black', // Adjust the focused border color here
+                        },
+                        '& input': {
+                          color: 'black', // Adjust the focused text color here
+                        },
+                        // '& .MuiInputLabel-root': {
+                        //   color: 'black', // Adjust the focused label color here
+                        // },
+                      },
+                    },
+                  }}
+                  onFocus={(e) => e.preventDefault()} // Prevent focus on click
+                />
+
+                {/* {searchQuery && (
+                  <IconButton
+                    size="small"
+                    sx={{ color: 'white' }}
+                    onClick={handleClear}
+                  >
+                    <ClearIcon />
+                  </IconButton>
+                )}
+
+                <IconButton
+                  size="small"
+                  sx={{ color: 'white', marginLeft: 1 }}
+                  onClick={() => {
+                    // Handle search button click
+                  }}
+                >
+                  <SearchIcon />
+                </IconButton> */}
+              </Box>
             </Box>
 
             
