@@ -43,6 +43,16 @@ function Header() {
 
   const [searchQuery, setSearchQuery] = useState('');
 
+  const handleLogout = () => {
+    //localStorage.removeItem("token");
+    //localStorage.removeItem("userId");
+    localStorage.clear();
+    setisAdmin(false);
+    setisLoggedIn(false);
+    setisSeller(false);
+  };
+
+
   const handleClear = () => {
     setSearchQuery('');
   };
@@ -382,7 +392,7 @@ function Header() {
                     {/* {isSeller && <MenuItem onClick={handleClose}>Sell</MenuItem>} */}
                     <MenuItem onClick={handleClose}>Personal Information</MenuItem>
                     <MenuItem onClick={handleClose}>Change Password</MenuItem>
-                    <MenuItem onClick={() => { handleClose(); }}>Logout</MenuItem>
+                    <MenuItem onClick={() => { handleLogout(); handleClose(); }}>Logout</MenuItem>
                 </Menu>
                 </div>
             ) : (

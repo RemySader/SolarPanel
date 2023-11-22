@@ -39,7 +39,7 @@ function SignUp({ onClose, openDialog }) {
 
   const [selectedRole, setSelectedRole] = useState(null);
   const [date, setDate] = React.useState(dayjs().startOf('day'));
-  const [location, setLocation] = React.useState('');
+  const [location, setLocation] = React.useState(null); //''
 
   // const handleChange = (event) => {
   //   setLocation(event.target.value);
@@ -289,7 +289,7 @@ function SignUp({ onClose, openDialog }) {
               </Typography>
             )}
             {/* <Button type='submit' color='primary' variant="contained" style={btnstyle} onClick={handleClearErrorMessage}>Sign Up</Button> */}
-            <Button type='submit' variant="contained" style={btnstyle} onclick={handleClearErrorMessage}>Sign Up</Button>
+            <Button type='submit' variant="contained" style={btnstyle} onClick={handleClearErrorMessage}>Sign Up</Button>
           </Stack>
         </form>
         <Stack spacing={2}>
