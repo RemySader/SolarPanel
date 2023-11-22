@@ -46,7 +46,8 @@ const CardComponent = ({ cardData }) => {
   const absoluteImageUrl = `${serverBaseUrl}/${image}`;
 
   return (
-    <Card sx={{ maxWidth: 345, margin: '5%' }}>
+    // maxWidth: 345
+    <Card sx={{ maxWidth: 600, margin: '5%' }}> 
       <CardActionArea onClick={handleOpen}>
         <CardMedia component="img" height="140" image={absoluteImageUrl} alt={title} />
         <CardContent>

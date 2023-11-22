@@ -6,12 +6,22 @@ import Footer from '../components/footer/footer'
 import AboutUsHome from '../components/about us/aboutusHome'
 import Testimonial from '../components/testimonials/testimonials'
 // import AboutUs from '../components/about us/aboutus'
+import SearchResults from '../components/header/SearchResults';
+import { useState } from 'react';
 
 function Home() {
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearchResultsChange = (results) => {
+    setSearchResults(results);
+  };
   return (
     <div className="Home">
-        <Navbar/>
+        <Navbar onSearchResultsChange={handleSearchResultsChange} />
         <HeroSection/>
+        {searchResults.length > 0 && (
+          <SearchResults results={searchResults} />
+        )}
         <Lebanon />
         <Cards />
         <AboutUsHome />

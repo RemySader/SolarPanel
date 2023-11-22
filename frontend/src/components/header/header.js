@@ -32,7 +32,7 @@ import DrawerComp from "./drawer";
 
 const pages = ['Home', 'About Us', 'Solar Panels', 'Sell', 'Your Plantations'];
 
-function Header() {
+function Header({ onSearchResultsChange }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isLoggedIn, setisLoggedIn] = React.useState(false);
   const [isAdmin, setisAdmin] = React.useState(false);
@@ -62,7 +62,7 @@ function Header() {
     try {
       const response = await axios.get(`http://localhost:3000/solar-panel/search-solar-panels?q=${searchQuery}`);
       // Update state with search results
-      setSearchResults(response.data.data);
+      onSearchResultsChange(response.data.data);
     } catch (error) {
       console.error('Error searching solar panels:', error.response?.data);
     }
@@ -469,9 +469,9 @@ function Header() {
           </DialogContent>
         </Dialog>
       )}
-      {searchResults.length > 0 && (
+      {/* {searchResults.length > 0 && (
         <SearchResults results={searchResults} />
-      )}
+      )} */}
     </React.Fragment>
   );
 }
