@@ -5,7 +5,7 @@ import Cards from '../components/card/scroll'
 import Footer from '../components/footer/footer'
 import AboutUsHome from '../components/about us/aboutusHome'
 import Testimonial from '../components/testimonials/testimonials'
-import AboutUs from '../components/about us/aboutus'
+// import AboutUs from '../components/about us/aboutus'
 
 function Home() {
   return (
@@ -17,7 +17,7 @@ function Home() {
         <AboutUsHome />
         <Testimonial />
         <Footer />
-        <AboutUs />
+        {/* <AboutUs /> */}
     </div>
   );
 }
