@@ -7,20 +7,31 @@ import AboutUsHome from '../components/about us/aboutusHome'
 import Testimonial from '../components/testimonials/testimonials'
 // import AboutUs from '../components/about us/aboutus'
 import SearchResults from '../components/header/SearchResults';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function Home() {
   const [searchResults, setSearchResults] = useState([]);
+  const searchResultsRef = useRef(null);
 
   const handleSearchResultsChange = (results) => {
     setSearchResults(results);
   };
+
+  useEffect(() => {
+    // Scroll to the SearchResults section when results are available
+    if (searchResults.length > 0 && searchResultsRef.current) {
+      searchResultsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [searchResults]);
+
   return (
     <div className="Home">
         <Navbar onSearchResultsChange={handleSearchResultsChange} />
         <HeroSection/>
         {searchResults.length > 0 && (
-          <SearchResults results={searchResults} />
+          <div ref={searchResultsRef}>
+            <SearchResults results={searchResults} />
+          </div>
         )}
         <Lebanon />
         <Cards />

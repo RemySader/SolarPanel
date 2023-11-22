@@ -68,6 +68,16 @@ function Header({ onSearchResultsChange }) {
     }
   };
 
+  const handleSearchAll = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/solar-panel/solar-panels`);
+      // Update state with search results
+      onSearchResultsChange(response.data.data);
+    } catch (error) {
+      console.error('Error searching solar panels:', error.response?.data);
+    }
+  };
+
 
   const handleClear = () => {
     setSearchQuery('');
@@ -252,6 +262,9 @@ function Header({ onSearchResultsChange }) {
                     </Button>
                     <Button
                         sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
+                        onClick={() => {
+                          handleSearchAll();
+                        }}
                     >
                         Solar Panels
                     </Button>
