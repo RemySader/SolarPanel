@@ -9,6 +9,7 @@ import Testimonial from '../components/testimonials/testimonials'
 // import AboutUs from '../components/about us/aboutus'
 import SearchResults from '../components/header/SearchResults';
 import { useState, useRef, useEffect } from 'react';
+import Seperator from '../components/seperator';
 
 function Home() {
   const [searchResults, setSearchResults] = useState([]);
@@ -29,11 +30,13 @@ function Home() {
     <div className="Home">
         <Navbar onSearchResultsChange={handleSearchResultsChange} />
         <HeroSection/>
+        <Seperator />
         {searchResults.length > 0 && (
           <div ref={searchResultsRef}>
             <SearchResults results={searchResults} />
           </div>
         )}
+        <Seperator />
         <Lebanon />
         <Cards />
         <AboutUsHome />
