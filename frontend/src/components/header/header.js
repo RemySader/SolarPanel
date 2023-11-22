@@ -24,6 +24,7 @@ import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import { InputAdornment } from '@mui/material';
+import SearchResults from './SearchResults';
 
 import DrawerComp from "./drawer";
 
@@ -42,6 +43,7 @@ function Header() {
   const isMatchSearch1 = useMediaQuery(theme.breakpoints.down("1190"));
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleLogout = () => {
     //localStorage.removeItem("token");
@@ -50,6 +52,16 @@ function Header() {
     setisAdmin(false);
     setisLoggedIn(false);
     setisSeller(false);
+  };
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/solar-panel/search-solar-panels?q=${searchQuery}`);
+      // Update state with search results
+      setSearchResults(response.data.data);
+    } catch (error) {
+      console.error('Error searching solar panels:', error.response?.data);
+    }
   };
 
 
@@ -150,7 +162,7 @@ function Header() {
                         <IconButton
                           size="small"
                           onClick={() => {
-                            // Handle search button click
+                            handleSearch();
                           }}
                           edge="end"
                         >
@@ -273,7 +285,7 @@ function Header() {
                         <IconButton
                           size="small"
                           onClick={() => {
-                            // Handle search button click
+                            handleSearch();
                           }}
                           edge="end"
                         >
@@ -450,6 +462,9 @@ function Header() {
             {dialogType === 'sell' && <Sell onClose={closeDialog} openDialog={openDialog} />}
           </DialogContent>
         </Dialog>
+      )}
+      {searchResults.length > 0 && (
+        <SearchResults results={searchResults} />
       )}
     </React.Fragment>
   );

@@ -8,7 +8,7 @@ import { CardActionArea } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import './card.css'
-import myimage from "../../images/heroSection.jpg"
+// import myimage from "../../images/heroSection.jpg"
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PersonIcon from '@mui/icons-material/Person';
@@ -39,23 +39,28 @@ const CardComponent = ({ cardData }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const { title, location, price, description, user, image } = cardData;
+  const { firstName, lastName, email, phoneNumber } = user || {};
+
+  const serverBaseUrl = 'http://localhost:3000';
+  const absoluteImageUrl = `${serverBaseUrl}/${image}`;
+
   return (
     <Card sx={{ maxWidth: 345, margin: '5%' }}>
       <CardActionArea onClick={handleOpen}>
-        <CardMedia component="img" height="140" image={myimage} alt={cardData.title} />
+        <CardMedia component="img" height="140" image={absoluteImageUrl} alt={title} />
         <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {cardData.title}
-            </Typography>
-            <Typography variant="body2" style={flexAlignCenter}>
-                <LocationOnIcon fontSize="medium" style={{ marginRight: '4px' }}/>
-                {cardData.location}
+          <Typography gutterBottom variant="h5" component="div" fontSize={'160%'}>
+            {title}
+          </Typography>
+          <Typography variant="body2" style={flexAlignCenter}>
+            <LocationOnIcon fontSize="medium" style={{ marginRight: '4px' }} />
+            {location}
           </Typography>
           <Typography variant="body2" style={flexAlignCenter}>
             <AttachMoneyIcon fontSize='medium' style={{ marginRight: '4px' }} />
-            {cardData.price}
+            {price}
           </Typography>
-
         </CardContent>
       </CardActionArea>
 
@@ -66,38 +71,42 @@ const CardComponent = ({ cardData }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style1}>
-          <img src={myimage} alt={cardData.title} style={{ width: '100%', borderRadius: '8px'}} />
-          <Typography gutterBottom variant="h5" component="div" style={{ fontWeight: 'bold'}}>
-            {cardData.title}
+          <img src={absoluteImageUrl} alt={title} style={{ width: '100%', borderRadius: '8px' }} />
+          <Typography gutterBottom variant="h5" component="div" style={{ fontWeight: 'bold' }}>
+            {title}
           </Typography>
           <div className="grid-container">
             <div className="grid-item">
               <Typography variant="body2" style={flexAlignCenter}>
-                <LocationOnIcon fontSize="medium" style={{ marginRight: '4px' }}/>
-                {cardData.location}</Typography>
+                <LocationOnIcon fontSize="medium" style={{ marginRight: '4px' }} />
+                {location}
+              </Typography>
               <Typography variant="body2" style={flexAlignCenter}>
                 <AttachMoneyIcon fontSize='medium' style={{ marginRight: '4px' }} />
-                {cardData.price}
+                {price}
               </Typography>
-              
             </div>
             <div className="grid-item" >
-              <Typography variant="body2" style={flexAlignCenter}>
-               <PersonIcon fontSize='medium' style={{ marginRight: '4px',color:'#FFC857' }} />
-                {`${cardData.firstName} ${cardData.lastName}`}
-              </Typography>
-              <Typography variant="body2" style={flexAlignCenter}>
-                <EmailIcon fontSize='medium' style={{ marginRight: '4px',color:'#FFC857' }} />
-                {cardData.email}
-              </Typography>
-              <Typography variant="body2" style={flexAlignCenter}>
-                <LocalPhoneIcon fontSize='medium' style={{ marginRight: '4px',color:'#FFC857' }} />
-                {cardData.phoneNumber}
-              </Typography>
+              {user && (
+                <>
+                  <Typography variant="body2" style={flexAlignCenter}>
+                    <PersonIcon fontSize='medium' style={{ marginRight: '4px', color: '#FFC857' }} />
+                    {`${firstName} ${lastName}`}
+                  </Typography>
+                  <Typography variant="body2" style={flexAlignCenter}>
+                    <EmailIcon fontSize='medium' style={{ marginRight: '4px', color: '#FFC857' }} />
+                    {email}
+                  </Typography>
+                  <Typography variant="body2" style={flexAlignCenter}>
+                    <LocalPhoneIcon fontSize='medium' style={{ marginRight: '4px', color: '#FFC857' }} />
+                    {phoneNumber}
+                  </Typography>
+                </>
+              )}
             </div>
           </div>
           <Typography variant="body2" color="text.secondary">
-            {cardData.description}
+            {description}
           </Typography>
         </Box>
       </Modal>
