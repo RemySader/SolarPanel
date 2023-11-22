@@ -2,8 +2,12 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import AboutUsImage from '../../images/about-us.png';
 import './aboutusHome.css';
+import { useNavigate } from 'react-router-dom';
+import scrollToTop from '../scrollUtils';
 
 const AboutHome = () => {
+    const navigate = useNavigate();
+
     return (
         <section className='AboutUs'>
             <div className='image-container'>
@@ -17,7 +21,7 @@ const AboutHome = () => {
 
                 <div className='grid-1'>
                     <div className='sign-up'>
-                        <Button variant="contained" style={{backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'200px',height:'50px',borderRadius:'80px'}}>Learn More</Button>
+                        <Button variant="contained" onClick={() => { navigate('/about-us'); scrollToTop(); }} style={{backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'200px',height:'50px',borderRadius:'80px'}}>Learn More</Button>
                     </div>
 
                 </div>

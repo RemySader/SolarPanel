@@ -25,6 +25,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import { InputAdornment } from '@mui/material';
 import SearchResults from './SearchResults';
+import { useNavigate } from 'react-router-dom';
+import scrollToTop from '../scrollUtils';
 
 import DrawerComp from "./drawer";
 
@@ -44,6 +46,8 @@ function Header() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     //localStorage.removeItem("token");
@@ -236,11 +240,13 @@ function Header() {
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                     <Button
                         sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
+                        onClick={() => { navigate('/'); scrollToTop(); }}
                     >
                         Home
                     </Button>
                     <Button
                         sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
+                        onClick={() => { navigate('/about-us'); scrollToTop(); }}
                     >
                         About Us
                     </Button>

@@ -57,6 +57,7 @@ position: relative;
 max-width: 70%;
 margin: 0 auto;
 padding: 20px;
+margin-top: 60px;
 }
 
 /* Header styles */
@@ -212,6 +213,10 @@ font-size: 18px;
     .team-member {
       width: 100%; /* Take up full width on smaller screens */
       margin-bottom: 1rem;
+    }
+
+    .about-us-container img {
+      display: none;
     }
   }
   
