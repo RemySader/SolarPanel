@@ -17,6 +17,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Signup from '../form/signup';
 import Signin from '../form/signin';
+import Sell from '../sell/sell'
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
@@ -372,11 +373,16 @@ function Header() {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    {isSeller && <MenuItem onClick={handleClose}>Your Plantations</MenuItem>}
-                    {isSeller && <MenuItem onClick={handleClose}>Sell</MenuItem>}
+                    {isSeller && <MenuItem onClick={handleClose} >Your Plantations</MenuItem>}
+                    {isSeller && (
+                      <MenuItem onClick={() => { handleClose(); openDialog('sell'); }}>
+                        Sell
+                      </MenuItem>
+                    )}
+                    {/* {isSeller && <MenuItem onClick={handleClose}>Sell</MenuItem>} */}
                     <MenuItem onClick={handleClose}>Personal Information</MenuItem>
                     <MenuItem onClick={handleClose}>Change Password</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={() => { handleClose(); }}>Logout</MenuItem>
                 </Menu>
                 </div>
             ) : (
@@ -431,6 +437,7 @@ function Header() {
           <DialogContent>
             {dialogType === 'signin' && <Signin onClose={closeDialog} openDialog={openDialog} />}
             {dialogType === 'signup' && <Signup onClose={closeDialog} openDialog={openDialog} />}
+            {dialogType === 'sell' && <Sell onClose={closeDialog} openDialog={openDialog} />}
           </DialogContent>
         </Dialog>
       )}
