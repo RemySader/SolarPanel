@@ -57,7 +57,8 @@ function Login({ onClose, openDialog, onLogin }) {
           .catch((error) => {
             console.error('Login failed:', error.response?.data);
       
-            setLoginMessage('Invalid username or password.');
+            // setLoginMessage('Invalid username or password.');
+            setLoginMessage('Invalid credentials.');
           });
       };
 
@@ -74,9 +75,9 @@ function Login({ onClose, openDialog, onLogin }) {
                 </Grid>
                 <Stack spacing={2}>
                     <TextField
-                        label='Username'
+                        label='Username or Email'
                         variant="outlined"
-                        placeholder='Enter Username'
+                        placeholder='Enter Username or Email'
                         fullWidth
                         required
                         value={username}
