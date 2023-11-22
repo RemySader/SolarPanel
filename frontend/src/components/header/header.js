@@ -27,6 +27,7 @@ import { InputAdornment } from '@mui/material';
 import SearchResults from './SearchResults';
 import { useNavigate } from 'react-router-dom';
 import scrollToTop from '../scrollUtils';
+import logo from '../../images/logo.png'
 
 import DrawerComp from "./drawer";
 
@@ -171,7 +172,7 @@ function Header({ onSearchResultsChange }) {
         <Container maxWidth="xl">
             <Toolbar disableGutters>
             <IconButton sx={{ p: 0 }}>
-                    <Avatar alt="logo" src="/src/images/logo.jpeg"/>
+                    <Avatar alt="logo" src={logo}/>
             </IconButton>
             {isMatch ? (
             <>
