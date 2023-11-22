@@ -12,6 +12,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Signup from '../form/signup';
 import Signin from '../form/signin';
+import Sell from '../sell/sell'
 
 
 const pages = ['Home', 'About Us', 'Solar Panels', 'Sell', 'Your Plantations', 'Login', 'Signup'];
@@ -61,7 +62,7 @@ const DrawerComp = () => {
         </ListItemButton>
         {isSeller && (
         <>
-            <ListItemButton>
+            <ListItemButton onClick={() => openDialog('sell')}>
                 <ListItemIcon>
                 <ListItemText>Sell</ListItemText>
                 </ListItemIcon>
@@ -132,6 +133,7 @@ const DrawerComp = () => {
           <DialogContent>
             {dialogType === 'signin' && <Signin onClose={closeDialog} />}
             {dialogType === 'signup' && <Signup onClose={closeDialog} />}
+            {dialogType === 'sell' && <Sell onClose={closeDialog} />}
           </DialogContent>
         </Dialog>
       )}
