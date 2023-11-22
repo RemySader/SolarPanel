@@ -1,4 +1,5 @@
-import HeroSection from '../components/heroSection/heroSection';
+// import HeroSection from '../components/heroSection/heroSection';
+import HeroSection from '../components/carousel/carousel';
 import Lebanon from '../components/leaflet/leafletMap'
 import Navbar from '../components/header/header'
 import Cards from '../components/card/scroll'
