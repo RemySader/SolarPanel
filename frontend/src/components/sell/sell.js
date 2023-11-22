@@ -1,26 +1,8 @@
 import React, { useState } from 'react';
-import { Grid, Paper, TextField, Button, Typography, Link, InputAdornment, IconButton } from "@mui/material";
+import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
 import { Box, Stack } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
-import { InputLabel } from '@mui/material'
 
 function Sell({ onClose, openDialog }) {
   const [title, settitle] = useState('');
