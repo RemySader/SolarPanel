@@ -49,6 +49,27 @@ function Header({ onSearchResultsChange }) {
 
   const navigate = useNavigate();
 
+  const handleLogin = (status) => {
+    setisLoggedIn(status);
+
+    // Fetch user roles and update isAdmin and isSeller accordingly
+    if (status) {
+      setisLoggedIn(true);
+      // Fetch user roles from local storage
+      const rolesFromStorage = JSON.parse(localStorage.getItem("roles"));
+
+      // Check if the roles list contains 'seller'
+      const isSeller = rolesFromStorage && rolesFromStorage.includes('seller');
+      
+      // Update isAdmin and isSeller accordingly
+      setisAdmin(rolesFromStorage && rolesFromStorage.includes('admin'));
+      setisSeller(isSeller);
+    } else {
+      setisAdmin(false);
+      setisSeller(false);
+    }
+  };
+
   const handleLogout = () => {
     //localStorage.removeItem("token");
     //localStorage.removeItem("userId");
@@ -476,7 +497,7 @@ function Header({ onSearchResultsChange }) {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            {dialogType === 'signin' && <Signin onClose={closeDialog} openDialog={openDialog} />}
+            {dialogType === 'signin' && <Signin onClose={closeDialog} openDialog={openDialog} onLogin={handleLogin}/>}
             {dialogType === 'signup' && <Signup onClose={closeDialog} openDialog={openDialog} />}
             {dialogType === 'sell' && <Sell onClose={closeDialog} openDialog={openDialog} />}
           </DialogContent>

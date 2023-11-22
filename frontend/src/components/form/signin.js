@@ -7,7 +7,7 @@ import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 
-function Login({ onClose, openDialog }) {
+function Login({ onClose, openDialog, onLogin }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginMessage, setLoginMessage] = useState('');
@@ -43,6 +43,7 @@ function Login({ onClose, openDialog }) {
               localStorage.setItem("roles", JSON.stringify(rolesFromResponse));
               
               onClose();
+              onLogin(true);
 
             //   navigate(`/`);
             } else if (response.data.status === 'FAILED') {
