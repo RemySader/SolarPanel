@@ -84,12 +84,20 @@ const LeafletMap = () => {
           // onClose={closeDialog}
           maxWidth="md"
           fullWidth
+          // PaperProps={{
+          //   style: {
+          //     height: '67vh',
+          //     width: '40vw',
+          //     // minHeight: '30%',
+          //     borderRadius: 16,
+          //   },
+          // }}
           PaperProps={{
             style: {
-              height: '67vh',
-              width: '40vw',
-              // minHeight: '30%',
-              borderRadius: 16,
+              height: 'auto', // Set height to auto
+              width: '80%', // Adjust width
+              maxWidth: '600px', // Set max width
+              borderRadius: '16px',
             },
           }}
           static
