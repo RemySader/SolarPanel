@@ -4,12 +4,47 @@ import 'leaflet/dist/leaflet.css';
 import './leafletMap.css';
 import Button from '@mui/material/Button';
 
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import Signup from '../form/signup';
+import CloseIcon from '@mui/icons-material/Close';
+import { useState, useEffect } from 'react';
+import IconButton from '@mui/material/IconButton';
 
-const leafletMap = () => {
+
+function checkTokenValidity() {
+    const token = localStorage.getItem('token');
+    return Boolean(token);
+  }
+
+const LeafletMap = () => {
     // Beirut's latitude and longitude
     const position = [33.895, 35.4785];
 
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [dialogType, setDialogType] = useState(null);
+
+    const [isLoggedIn, setisLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // Check token validity on component mount
+        setisLoggedIn(checkTokenValidity);
+      }, []); // Empty dependency array ensures this effect runs once on mount
+    
+
+    const openDialog = (type) => {
+        setIsDialogOpen(true);
+        setDialogType(type);
+    };
+
+    const closeDialog = () => {
+        setIsDialogOpen(false);
+        setDialogType(null);
+    };
+
     return (
+        <React.Fragment>
         <section className='lebanonMap'>
 
             <div>
@@ -24,9 +59,11 @@ const leafletMap = () => {
                         <p className='number'>50+</p>
                         <p>We are pround to annoce that we have exeeded over 50 locations all over lebanon</p>
                     </div>
+                    {!isLoggedIn &&
                     <div className='sign-up'>
-                        <Button variant="contained" style={{backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',height:'50px',borderRadius:'80px'}}>Sign Up</Button>
+                        <Button variant="contained" style={{backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',height:'50px',borderRadius:'80px'}} onClick={() => openDialog('signup')}>Sign Up</Button>
                     </div>
+                    }
 
                 </div>
 
@@ -41,7 +78,40 @@ const leafletMap = () => {
             </div>
 
         </section>
+        {isDialogOpen && (
+        <Dialog
+          open={isDialogOpen}
+          // onClose={closeDialog}
+          maxWidth="md"
+          fullWidth
+          PaperProps={{
+            style: {
+              height: '67vh',
+              width: '40vw',
+              // minHeight: '30%',
+              borderRadius: 16,
+            },
+          }}
+          static
+          // onClose={() => null}
+        >
+          <DialogTitle>
+            <IconButton
+              edge="end"
+              color="inherit"
+              onClick={closeDialog}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            {dialogType === 'signup' && <Signup onClose={closeDialog} openDialog={openDialog} />}
+          </DialogContent>
+        </Dialog>
+      )}
+        </React.Fragment>
     );
 }
 
-export default leafletMap;
+export default LeafletMap;
