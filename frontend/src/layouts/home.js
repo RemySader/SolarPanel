@@ -10,6 +10,7 @@ import Testimonial from '../components/testimonials/testimonials'
 import SearchResults from '../components/header/SearchResults';
 import { useState, useRef, useEffect } from 'react';
 import Seperator from '../components/seperator';
+import { FloatButton } from 'antd';
 
 function Home() {
   const [searchResults, setSearchResults] = useState([]);
@@ -42,7 +43,8 @@ function Home() {
         <AboutUsHome />
         <Testimonial />
         <Footer />
-        {/* <AboutUs /> */}
+
+        <FloatButton.BackTop style={ { marginRight: '2%'} }/>
     </div>
   );
 }

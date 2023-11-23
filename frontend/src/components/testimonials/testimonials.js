@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import './testimonials.css'
-import image1 from '../about us/teamPhoto/rs.jpeg'
-import image2 from '../about us/teamPhoto/ojm.jpg'
-import image3 from '../about us/teamPhoto/natachamalychev.jpg'
+import image1 from './testimonialsImages/image1.jpg'
+import image2 from './testimonialsImages/image2.jpg'
+import image3 from './testimonialsImages/image3.jpg'
 
 export default class Testimonials extends Component {
     render() {
@@ -17,38 +17,41 @@ export default class Testimonials extends Component {
             autoPlay={true}
             interval={6100}
           >
-            <div>
-              <img src={image1} />
+            <div style={{margin: '2%'}}>
+              <img src={image1} alt="image 1"/>
               <div className="myCarousel">
-                <h3>Shirley Fultz</h3>
+                <h3>Shirley Haddad</h3>
                 <h4>Designer</h4>
                 <p>
-                  It's freeing to be able to catch up on customized news and not be
-                  distracted by a social media element on the same site
+                  Solar Wave transformed the way I think about energy. Selling my excess solar power is not
+                   just eco-friendly but also financially rewarding. A community-driven platform that's changing
+                  the game!
                 </p>
               </div>
             </div>
     
-            <div>
-              <img src={image2} />
+            <div style={{margin: '2%'}}>
+              <img src={image2} alt="image 2"/>
               <div className="myCarousel">
-                <h3>Daniel Keystone</h3>
+                <h3>Daniel Fares</h3>
                 <h4>Electrical Engineer</h4>
                 <p>
-                  The simple and intuitive design makes it easy for me use. I highly
-                  recommend Fetch to my peers.
+                  As a buyer, finding and purchasing clean energy on Solar Wave was a breeze. 
+                  The transparency and local focus make it my go-to for sustainable power. 
+                  Cheers to a brighter, greener future!
                 </p>
               </div>
             </div>
     
-            <div>
-              <img src={image3} />
+            <div style={{margin: '2%'}}>
+              <img src={image3} alt="image 3"/>
               <div className="myCarousel">
-                <h3>Theo Sorel</h3>
+                <h3>Theo Hajj</h3>
                 <h4>CCE</h4>
                 <p>
-                  I enjoy catching up with Fetch on my laptop, or on my phone when
-                  I'm on the go!
+                  Joining Solar Wave was a game-changer for our neighborhood. 
+                  We're not just reducing our carbon footprint but creating a stronger, more connected community. 
+                  Proud to be part of the clean energy revolution!
                 </p>
               </div>
             </div>

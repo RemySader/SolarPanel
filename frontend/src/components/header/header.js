@@ -470,13 +470,13 @@ function Header({ onSearchResultsChange }) {
                         onClick={() => openDialog('signin')} // Open the Signin dialog
                         sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
                     >
-                        Login
+                        Sign In
                     </Button>
                     <Button
                         onClick={() => openDialog('signup')} // Open the Signup dialog
                         sx={{ mx: 2, color: 'white', fontSize: '1.1rem' }}
                     >
-                        Signup
+                        Sign Up
                     </Button>
                 </Box>
             )}
