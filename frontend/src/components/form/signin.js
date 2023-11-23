@@ -26,8 +26,9 @@ function Login({ onClose, openDialog, onLogin }) {
         color: 'rgba(12, 12, 12, 0.87)',
         fontWeight: '900',
         fontSize: '16px', // Adjust font size
-        width: '100%', // Make it full width
-        borderRadius: '8px', // Adjust border radius
+        width: '70%', // Make it full width
+        // width: {sm: '100%', md: '80%', lg: '60%'},
+        borderRadius: '150px', // Adjust border radius
         margin: '20px auto',
         textTransform: 'none',
       };
