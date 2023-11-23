@@ -38,8 +38,27 @@ function Sell({ onClose, openDialog }) {
     'Bsalim'
   ];
 
-  const paperStyle = { padding: 20, width: 750 };
-  const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
+//   const paperStyle = { padding: 20, width: 750 };
+//   const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
+
+    const paperStyle = {
+        padding: '20px', // Adjust padding
+        width: '80%', // Adjust width
+        maxWidth: '400px', // Set max width
+    };
+  
+    // const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
+    const btnstyle = {
+        backgroundColor: '#FFC857',
+        color: 'rgba(12, 12, 12, 0.87)',
+        fontWeight: '900',
+        fontSize: '16px', // Adjust font size
+        width: '70%', // Make it full width
+        // width: {sm: '100%', md: '80%', lg: '60%'},
+        borderRadius: '150px', // Adjust border radius
+        margin: '20px auto',
+        textTransform: 'none',
+        };
 
   const validateForm = () => {
     let isValid = true;
@@ -118,7 +137,8 @@ function Sell({ onClose, openDialog }) {
             <h3 style={{ marginBottom: '20px' }}>List your product</h3>
           </Grid>
           <Stack spacing={2} direction={'column'}>
-            <Stack spacing={4} direction={'row'}>
+            {/* <Stack spacing={4} direction={'row'}> */}
+            <Stack spacing={4} direction={{ xs: 'column', sm: 'row' }}>
               <TextField label='Title' variant="outlined" placeholder='Enter Title' fullWidth required 
                 value={title} onChange={(e) => settitle(e.target.value)} error={!!titleError} helperText={titleError}
               />
@@ -126,7 +146,8 @@ function Sell({ onClose, openDialog }) {
                 value={price} onChange={(e) => setprice(e.target.value)}
               />
             </Stack>
-            <Stack spacing={4} direction={'row'}>
+            {/* <Stack spacing={4} direction={'row'}> */}
+            <Stack spacing={4} direction={{ xs: 'column', sm: 'row' }}>
             <Autocomplete
                   options={cities}
                   fullWidth
@@ -168,7 +189,8 @@ function Sell({ onClose, openDialog }) {
                 />
             {/* </FormControl> */}
             </Stack>
-            <Stack spacing={4} direction={'row'}>
+            {/* <Stack spacing={4} direction={'row'}> */}
+            <Stack spacing={4} direction={{ xs: 'column', sm: 'row' }}>
               <TextField label='Description' variant="outlined" placeholder='Enter Description' fullWidth required multiline rows={4}
                 value={description} onChange={(e) => {setdescription(e.target.value)}} error={!!descriptionError} helperText={descriptionError}
               />
