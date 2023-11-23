@@ -13,8 +13,25 @@ function Login({ onClose, openDialog, onLogin }) {
     const [loginMessage, setLoginMessage] = useState('');
     // const navigate = useNavigate();
 
-    const paperStyle = { padding: 100, width: 280 };
-    const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
+    // const paperStyle = { padding: 100, width: 280 };
+    const paperStyle = {
+        padding: '20px', // Adjust padding
+        width: '80%', // Adjust width
+        maxWidth: '400px', // Set max width
+      };
+      
+    // const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
+    const btnstyle = {
+        backgroundColor: '#FFC857',
+        color: 'rgba(12, 12, 12, 0.87)',
+        fontWeight: '900',
+        fontSize: '16px', // Adjust font size
+        width: '100%', // Make it full width
+        borderRadius: '8px', // Adjust border radius
+        margin: '20px auto',
+        textTransform: 'none',
+      };
+      
     const linkstyle = { color: '#FFC857', textDecorationColor: '#FFC857' }
 
     const [showPassword, setShowPassword] = useState(false);
