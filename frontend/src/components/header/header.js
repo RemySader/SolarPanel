@@ -28,6 +28,7 @@ import SearchResults from './SearchResults';
 import { useNavigate } from 'react-router-dom';
 import scrollToTop from '../scrollUtils';
 import logo from '../../images/logo.png'
+import { Link } from '@mui/material'
 
 import DrawerComp from "./drawer";
 
@@ -49,6 +50,21 @@ function Header({ onSearchResultsChange }) {
   const [searchResults, setSearchResults] = useState([]);
 
   const navigate = useNavigate();
+
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
+
+  const btnstyle = {
+    backgroundColor: '#FFC857',
+    color: 'rgba(12, 12, 12, 0.87)',
+    fontWeight: '900',
+    fontSize: '16px',
+    width: '50%',  // Adjust the width as needed
+    borderRadius: '150px',
+    margin: '20px auto',
+    textTransform: 'none',
+  };
+
+  const linkstyle = { color: '#FFC857', textDecorationColor: '#FFC857' }
 
   const handleLogin = (status) => {
     setisLoggedIn(status);
@@ -94,8 +110,7 @@ function Header({ onSearchResultsChange }) {
   const handleSearchAll = async () => {
     try {
       if (!isLoggedIn) {
-        // Display an alert or open a dialog prompting the user to sign in
-        alert('Please sign in or create an account to access all features.');
+        setIsLoginDialogOpen(true);
         return;
       }
       const response = await axios.get(`http://localhost:3000/solar-panel/solar-panels`);
@@ -537,6 +552,39 @@ function Header({ onSearchResultsChange }) {
       {/* {searchResults.length > 0 && (
         <SearchResults results={searchResults} />
       )} */}
+
+    {isLoginDialogOpen && (
+      <Dialog open={true} onClose={() => setIsLoginDialogOpen(false)}>
+        {/* <DialogTitle>Please Sign In</DialogTitle> */}
+        <DialogContent style={{ textAlign: 'center' }}>
+          <p>
+            Please sign in or create an account to access all features.{' '}
+          </p>
+            {/* <Button variant="contained" style={btnstyle} onClick={() => { openDialog('signin'); closeDialog(); }}>Sign In</Button>
+            <Button variant="contained" style={btnstyle} onClick={() => { openDialog('signup'); closeDialog(); }}>Sign Up</Button> */}
+            <div>
+            <Link
+            style={linkstyle}
+            onClick={() => {
+              setIsLoginDialogOpen(false);
+              openDialog('signin'); // Open the Sign In dialog
+            }}
+            >
+              Sign In
+            </Link>
+            <Link
+            style={{ ...linkstyle, marginLeft: '8px' }}
+            onClick={() => {
+              setIsLoginDialogOpen(false);
+              openDialog('signup'); // Open the Sign In dialog
+            }}
+            >
+              Sign Up
+            </Link>
+            </div>
+        </DialogContent>
+      </Dialog>
+    )}
     </React.Fragment>
   );
 }
