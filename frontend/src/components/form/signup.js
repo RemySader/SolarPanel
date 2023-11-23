@@ -56,8 +56,29 @@ function SignUp({ onClose, openDialog }) {
     'Bsalim'
   ];
 
-  const paperStyle = { padding: 20, width: 750 };
-  const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
+  // const paperStyle = { padding: 20, width: 750 };
+  // const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
+  // const linkstyle = { color: '#FFC857', textDecorationColor: '#FFC857' }
+
+  const paperStyle = {
+    padding: '20px', // Adjust padding
+    width: '80%', // Adjust width
+    maxWidth: '400px', // Set max width
+  };
+  
+  // const btnstyle = { backgroundColor:'#FFC857',color:'rgba(12, 12, 12, 0.87)',fontWeight:'900',fontSize:'20px',width:'150px',borderRadius:'80px',margin:'20px auto',textTransform: 'none' };
+  const btnstyle = {
+      backgroundColor: '#FFC857',
+      color: 'rgba(12, 12, 12, 0.87)',
+      fontWeight: '900',
+      fontSize: '16px', // Adjust font size
+      width: '70%', // Make it full width
+      // width: {sm: '100%', md: '80%', lg: '60%'},
+      borderRadius: '150px', // Adjust border radius
+      margin: '20px auto',
+      textTransform: 'none',
+    };
+    
   const linkstyle = { color: '#FFC857', textDecorationColor: '#FFC857' }
 
   const validateForm = () => {
@@ -178,7 +199,8 @@ function SignUp({ onClose, openDialog }) {
             <h3 style={{ marginBottom: '20px' }}>Sign Up</h3>
           </Grid>
           <Stack spacing={2} direction={'column'}>
-            <Stack spacing={4} direction={'row'}>
+            {/* <Stack spacing={4} direction={'row'}> */}
+            <Stack spacing={4} direction={{ xs: 'column', sm: 'row' }}>
               <TextField label='First Name' variant="outlined" placeholder='Enter First Name' fullWidth required 
                 value={firstName} onChange={(e) => setFirstName(e.target.value)} error={!!firstNameError} helperText={firstNameError}
               />
@@ -186,7 +208,8 @@ function SignUp({ onClose, openDialog }) {
                 value={lastName} onChange={(e) => setLastName(e.target.value)} error={!!lastNameError} helperText={lastNameError}
               />
             </Stack>
-            <Stack spacing={4} direction={'row'}>
+            {/* <Stack spacing={4} direction={'row'}> */}
+            <Stack spacing={4} direction={{ xs: 'column', sm: 'row' }}>
               <TextField label='Email' variant="outlined" placeholder='Enter Email' type='email' fullWidth required
                 value={email} onChange={(e) => setEmail(e.target.value)} error={!!emailError} helperText={emailError}
               />
@@ -194,7 +217,8 @@ function SignUp({ onClose, openDialog }) {
                 value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} error={!!phoneNumberError} helperText={phoneNumberError}
               />
             </Stack>
-            <Stack spacing={4} direction={'row'}>
+            {/* <Stack spacing={4} direction={'row'}> */}
+            <Stack spacing={4} direction={{ xs: 'column', sm: 'row' }}>
             {/* <FormControl fullWidth sx={{ width: '50%' }}>
               <InputLabel id="demo-simple-select-label">Location</InputLabel>
               <Select
@@ -239,7 +263,8 @@ function SignUp({ onClose, openDialog }) {
               {/* </DemoContainer> */}
             </LocalizationProvider>
             </Stack>
-            <Stack spacing={4} direction={'row'}>
+            {/* <Stack spacing={4} direction={'row'}> */}
+            <Stack spacing={4} direction={{ xs: 'column', sm: 'row' }}>
               <TextField label='Username' variant="outlined" placeholder='Enter Username' fullWidth required
                 value={username} onChange={(e) => {setUsername(e.target.value)}} error={!!usernameError} helperText={usernameError}
               />
