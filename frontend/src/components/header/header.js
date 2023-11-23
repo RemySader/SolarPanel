@@ -78,6 +78,7 @@ function Header({ onSearchResultsChange }) {
     setisAdmin(false);
     setisLoggedIn(false);
     setisSeller(false);
+    window.location.reload();
   };
 
   const handleSearch = async () => {
@@ -93,6 +94,21 @@ function Header({ onSearchResultsChange }) {
   const handleSearchAll = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/solar-panel/solar-panels`);
+      // Update state with search results
+      onSearchResultsChange(response.data.data);
+    } catch (error) {
+      console.error('Error searching solar panels:', error.response?.data);
+    }
+  };
+
+  const handleYourPlantations = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`http://localhost:3000/solar-panel/user-solar-panels`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       // Update state with search results
       onSearchResultsChange(response.data.data);
     } catch (error) {
@@ -436,7 +452,7 @@ function Header({ onSearchResultsChange }) {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    {isSeller && <MenuItem onClick={handleClose} >Your Plantations</MenuItem>}
+                    {isSeller && <MenuItem onClick={() => { handleYourPlantations(); handleClose(); }}>Your Plantations</MenuItem>}
                     {isSeller && (
                       <MenuItem onClick={() => { handleClose(); openDialog('sell'); }}>
                         Sell
