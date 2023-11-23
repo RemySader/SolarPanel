@@ -328,7 +328,7 @@ function SignUp({ onClose, openDialog }) {
               openDialog('signin'); // Open the Sign In dialog
             }}
             >
-              Signin
+              Sign In
             </Link>
           </Typography>
         </Stack>

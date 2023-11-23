@@ -93,6 +93,11 @@ function Header({ onSearchResultsChange }) {
 
   const handleSearchAll = async () => {
     try {
+      if (!isLoggedIn) {
+        // Display an alert or open a dialog prompting the user to sign in
+        alert('Please sign in or create an account to access all features.');
+        return;
+      }
       const response = await axios.get(`http://localhost:3000/solar-panel/solar-panels`);
       // Update state with search results
       onSearchResultsChange(response.data.data);
