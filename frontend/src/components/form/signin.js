@@ -62,7 +62,7 @@ function Login({ onClose, openDialog, onLogin }) {
               
               onClose();
               onLogin(true);
-              window.location.reload(); //maybe lezim chila
+            //   window.location.reload(); //maybe lezim chila
 
             //   navigate(`/`);
             } else if (response.data.status === 'FAILED') {
@@ -144,7 +144,7 @@ function Login({ onClose, openDialog, onLogin }) {
                             openDialog('signup'); // Open the Sign Up dialog
                           }}
                         >
-                            Sign Up
+                            SignUp
                         </Link>
                     </Typography>
                 </Stack>

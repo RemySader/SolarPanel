@@ -10,7 +10,7 @@ import {
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import TwitterIcon from '@mui/icons-material/Twitter';
+
  
 const Footer = () => {
     return (
@@ -27,11 +27,8 @@ const Footer = () => {
                 <Row>
                     <Column>
                         <Heading>About Us</Heading>
-                        <FooterLink href="#">
-                            Aim
-                        </FooterLink>
-                        <FooterLink href="#">
-                            Vision
+                        <FooterLink href="/about-us">
+                            About us
                         </FooterLink>
                         <FooterLink href="#">
                             Testimonials
@@ -50,17 +47,15 @@ const Footer = () => {
                     <Column>
                         <Heading>Contact Us</Heading>
                         <FooterLink href="#">
-                            Uttar Pradesh
+                            +961 71 595 577
                         </FooterLink>
                         <FooterLink href="#">
-                            Ahemdabad
+                            +961 1 348 299
                         </FooterLink>
-                        <FooterLink href="#">
-                            Indore
+                        <FooterLink href="http://gmail.com/" target="_blank">
+                            Solarwave@gmail.com
                         </FooterLink>
-                        <FooterLink href="#">
-                            Mumbai
-                        </FooterLink>
+                        
                     </Column>
                     <Column>
                         <Heading>Social Media</Heading>
@@ -89,18 +84,7 @@ const Footer = () => {
                                 </span>
                             </i>
                         </FooterLink>
-                        <FooterLink href="https://twitter.com" target="_blank">
-                            <i className="fab fa-X">
-                            <TwitterIcon sx={{ color: "white" }} />
-                                <span
-                                    style={{
-                                        marginLeft: "10px",
-                                    }}
-                                >
-                                    X
-                                </span>
-                            </i>
-                        </FooterLink>
+                        
                         <FooterLink href="https://youtube.com" target="_blank">
                             <i className="fab fa-youtube">
                             <YouTubeIcon sx={{ color: "white" }} />
