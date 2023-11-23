@@ -12,23 +12,28 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Signup from '../form/signup';
 import Signin from '../form/signin';
-import Sell from '../sell/sell'
+import Sell from '../sell/sell';
+import scrollToTop from '../scrollUtils';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const pages = ['Home', 'About Us', 'Solar Panels', 'Sell', 'Your Plantations', 'Login', 'Signup'];
-const DrawerComp = () => {
+const DrawerComp = ({ isLoggedIn, isAdmin, isSeller, openDialog, onYourPlantations, solarPanels, handleLogout }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [isLoggedIn, setisLoggedIn] = React.useState(false);
-  const [isAdmin, setisAdmin] = React.useState(true);
-  const [isSeller, setisSeller] = React.useState(true);
+  // const [isLoggedIn, setisLoggedIn] = React.useState(false);
+  // const [isAdmin, setisAdmin] = React.useState(true);
+  // const [isSeller, setisSeller] = React.useState(true);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogType, setDialogType] = useState(null);
 
-  const openDialog = (type) => {
-    setIsDialogOpen(true);
-    setDialogType(type);
-  };
+  const navigate = useNavigate();
+
+  // const openDialog = (type) => {
+  //   setIsDialogOpen(true);
+  //   setDialogType(type);
+  // };
 
   const closeDialog = () => {
     setIsDialogOpen(false);
@@ -45,17 +50,17 @@ const DrawerComp = () => {
 
 
         <List>
-        <ListItemButton>
+        <ListItemButton onClick={() => { navigate('/'); scrollToTop(); }}>
             <ListItemIcon>
             <ListItemText>Home</ListItemText>
             </ListItemIcon>
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton onClick={() => { navigate('/about-us'); scrollToTop(); }}>
             <ListItemIcon>
             <ListItemText>About Us</ListItemText>
             </ListItemIcon>
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton onClick={() => { solarPanels(); }}>
             <ListItemIcon>
             <ListItemText>Solar Panels</ListItemText>
             </ListItemIcon>
@@ -67,7 +72,7 @@ const DrawerComp = () => {
                 <ListItemText>Sell</ListItemText>
                 </ListItemIcon>
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={onYourPlantations}>
                 <ListItemIcon>
                 <ListItemText>Your Plantations</ListItemText>
                 </ListItemIcon>
@@ -86,7 +91,7 @@ const DrawerComp = () => {
                 <ListItemText>Change Password</ListItemText>
                 </ListItemIcon>
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={handleLogout}>
                 <ListItemIcon>
                 <ListItemText>Logout</ListItemText>
                 </ListItemIcon>

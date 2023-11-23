@@ -280,7 +280,7 @@ function Header({ onSearchResultsChange }) {
                   <SearchIcon />
                 </IconButton> */}
               </Box>
-              <DrawerComp />
+              <DrawerComp isLoggedIn={isLoggedIn} isAdmin={isAdmin} isSeller={isSeller} openDialog={openDialog} onYourPlantations={handleYourPlantations} solarPanels={handleSearchAll} handleLogout={handleLogout}/>
             </>
           ) : (
             <>
