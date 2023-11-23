@@ -21,7 +21,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
 
-function SignUp({ onClose, openDialog }) {
+function SignUp({ onClose, openDialog, openedFromLeafletMap }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -169,7 +169,9 @@ function SignUp({ onClose, openDialog }) {
             alert('Account created successfully!');
 
             onClose();
-            openDialog('signin');
+            if (!openedFromLeafletMap) {
+              openDialog('signin');
+            }
           } else if (response.data.status === 'FAILED') {
             console.error('Signup failed:', response.data.message);
             setErrorMessage(response.data.message);
@@ -317,21 +319,23 @@ function SignUp({ onClose, openDialog }) {
             <Button type='submit' variant="contained" style={btnstyle} onClick={handleClearErrorMessage}>Sign Up</Button>
           </Stack>
         </form>
-        <Stack spacing={2}>
-          <Typography style={{ textAlign: 'center' }}>
-            Have an account?&nbsp;
-            {/* LINK???? */}
-            <Link
-            style={linkstyle}
-            onClick={() => {
-              onClose(); // Close the Sign Up dialog
-              openDialog('signin'); // Open the Sign In dialog
-            }}
-            >
-              Sign In
-            </Link>
-          </Typography>
-        </Stack>
+        {!openedFromLeafletMap && (
+              <Stack spacing={2}>
+                <Typography style={{ textAlign: 'center' }}>
+                  Have an account?&nbsp;
+                  {/* LINK???? */}
+                  <Link
+                    style={linkstyle}
+                    onClick={() => {
+                      onClose(); // Close the Sign Up dialog
+                      openDialog('signin'); // Open the Sign In dialog
+                    }}
+                  >
+                    Sign In
+                  </Link>
+                </Typography>
+              </Stack>
+            )}
       </Paper>
     </Box>
   );

@@ -114,7 +114,7 @@ const LeafletMap = () => {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            {dialogType === 'signup' && <Signup onClose={closeDialog} openDialog={openDialog} />}
+            {dialogType === 'signup' && <Signup onClose={closeDialog} openDialog={openDialog} openedFromLeafletMap={true}/>}
           </DialogContent>
         </Dialog>
       )}

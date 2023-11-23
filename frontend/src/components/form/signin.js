@@ -62,6 +62,7 @@ function Login({ onClose, openDialog, onLogin }) {
               
               onClose();
               onLogin(true);
+              window.location.reload(); //maybe lezim chila
 
             //   navigate(`/`);
             } else if (response.data.status === 'FAILED') {
