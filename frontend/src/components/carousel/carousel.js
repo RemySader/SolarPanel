@@ -7,6 +7,7 @@ import image3 from './carousel3.jpg'
 const divGeneralStyle = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
   height: '100vh',
   with:'100%',
   display: 'flex',
