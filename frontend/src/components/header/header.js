@@ -558,7 +558,7 @@ function Header({ onSearchResultsChange }) {
         {/* <DialogTitle>Please Sign In</DialogTitle> */}
         <DialogContent style={{ textAlign: 'center' }}>
           <p>
-            Please sign in or create an account to access all features.{' '}
+            Please sign in or create an account to see all available offers.{' '}
           </p>
             {/* <Button variant="contained" style={btnstyle} onClick={() => { openDialog('signin'); closeDialog(); }}>Sign In</Button>
             <Button variant="contained" style={btnstyle} onClick={() => { openDialog('signup'); closeDialog(); }}>Sign Up</Button> */}

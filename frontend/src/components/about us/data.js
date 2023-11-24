@@ -3,7 +3,7 @@ import usj from "./../../images/usj.png"
 import ojmimage from "./teamPhoto/ojm.jpg"
 import nmimage from "./teamPhoto/natachamalychev.jpg"
 import rsimage from "./teamPhoto/rs.jpeg"
-
+import gjimage from "./teamPhoto/gj.jpeg"
 
 export const TeamData = [
   {
@@ -34,7 +34,7 @@ export const TeamData = [
     id: 4,
     name: "Gaby Jammal",
     role: "CCE Student",
-    
+    photo: gjimage,
     linkedin: "https://www.linkedin.com/in/gaby-jammal-592644204/",
     email: "mailto:",
   }
