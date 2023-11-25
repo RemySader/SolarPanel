@@ -265,7 +265,6 @@ router.get('/search-solar-panels', async (req, res) => {
         // Split the search term into an array of words
         const searchWords = searchTerm.split(/\s+/);
 
-        // Create an array of conditions for each word in the search term
         const searchConditions = searchWords.map(word => ({
             $or: [
                 { title: { $regex: word, $options: 'i' } },
